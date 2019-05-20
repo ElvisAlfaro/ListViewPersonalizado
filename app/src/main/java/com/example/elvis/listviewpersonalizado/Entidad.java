@@ -1,10 +1,12 @@
 package com.example.elvis.listviewpersonalizado;
 
+import java.io.Serializable;
+
 /**
  * Created by Elvis on 27 abr 2017.
  */
 
-public class Entidad {
+public class Entidad implements Serializable {
 
     private int imgFoto;
     private String titulo;

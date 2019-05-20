@@ -1,6 +1,7 @@
 package com.example.elvis.listviewpersonalizado;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class Adaptador extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // OBTENER EL OBJETO POR CADA ITEM A MOSTRAR
-        Entidad entidad = (Entidad) getItem(position);
+        final Entidad entidad = (Entidad) getItem(position);
 
         // CREAMOS E INICIALIZAMOS LOS ELEMENTOS DEL ITEM DE LA LISTA
         convertView = LayoutInflater.from(context).inflate(R.layout.item, null);
@@ -54,6 +55,16 @@ public class Adaptador extends BaseAdapter {
         imgFoto.setImageResource(entidad.getImgFoto());
         tvTitulo.setText(entidad.getTitulo());
         tvContenido.setText(entidad.getContenido());
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, DetalleLista.class);
+                i.putExtra("item", entidad);
+                context.startActivity(i);
+                System.out.println("Click !!");
+            }
+        });
 
         return convertView;
     }
